@@ -2,14 +2,14 @@
  
 Gem::Specification.new do |s|
   s.name = %q{wizard_controller}
-  s.version = "0.1.3"
+  s.version = "0.1.4"
  
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Patrick Morgan"]
   s.date = %q{2009-09-25}
   s.description = %q{Wizard Controller is an inheritable class to ease the creation of Wizards}
   s.email = %q{patrick.morgan@masterwebdesign.net}
-  s.files = ["README.rdoc" , "History.txt" , "lib/wizard_controller.rb" ]
+  s.files = ["README", "README.rdoc" , "History.txt" , "lib/wizard_controller.rb" ]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/codeprimate/wizard_controller}
   s.rdoc_options = ["--inline-source", "--charset=UTF-8"]
