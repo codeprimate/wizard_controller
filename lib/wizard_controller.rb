@@ -4,19 +4,19 @@ module Codeprimate
   # Wizard controller provides a base class (Inheriting from ActionController::Base)
   # that provides a DSL for quickly making Wizards.
   # 
-  # In order for this to work, you need to have this standard route present:
-  # 
-  #   map.connect ':controller/:action/:id'
-  # 
   # VERY IMPORTANT!!! DONT OVERRIDE INDEX!
   # Doing so will break all functionality. WizardController works by defining an 
   # "index" method that does all the work.  To start a wizard, go to the "index" method.
   # 
   # === Setup and Configuration
   # 
-  # Add the gem configuration to your config/environment.rb
+  # Add the following gem configuration to <tt>config/environment.rb</tt>
   # 
   #   config.gem "wizard_controller"
+  #
+  # Ensure the following is present in <tt>config/routes.rb</tt>
+  # 
+  #   map.connect ':controller/:action/:id'
   # 
   # === Example Controller
   # 
