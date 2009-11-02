@@ -1,1 +1,2 @@
+20091102: 0.1.15 Changed session variable that stores redirect information, to avoid conflicts.
 20090925: Packaged as Gem
