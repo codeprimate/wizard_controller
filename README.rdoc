@@ -1,3 +1,81 @@
-Wizard Controller
+= Wizard Controller
 
-Make your controller inherit from this class.
+Wizard controller provides a base class (Inheriting from ActionController::Base)
+that provides a DSL for quickly making Wizards.
+
+In order for this to work, you need to have this standard route present:
+
+  map.connect ':controller/:action/:id'
+  
+VERY IMPORTANT!!! DONT OVERRIDE INDEX!
+Doing so will break all functionality. WizardController works by defining an 
+"index" method that does all the work.  To start a wizard, go to the "index" method.
+
+=== Example Controller
+
+  class ExampleController < Codeprimate::Wizard::Base
+    # Define the method names of the wixard steps
+    define_steps :page_one, :page_two, :page_three
+    
+    # Specify where the Wizard should redirect upon completion.
+    set_finish_path "http://www.example.com/go_here_when_done.html"
+    
+
+    # Ensure "index" is not defined!
+    # def index
+    # end
+    
+    def start
+      # Create a "safe"  index method for this controller, and handle it appropriately
+    end
+    
+    def foobar
+      # You can define whatever actions you want.  WizardController doesnt get in the way.
+    end
+    
+    def page_one
+      # This is a regular action method. Create indiviual views for action methods.
+    end
+    
+    def process_page_one
+      # Place logic to handle any output from page one here.
+      # No view will be shown for this 
+      #
+      # Return true if your logic wants you to go to the next step
+      # Return false if you want to return to the page_one view
+      return true
+    end  
+    
+    def page_two
+      # Let's say this action/view is merely informative.
+      # We will not supply a process method, and the user will always be able
+      # to go to the next step
+    end
+    
+    def page_three
+      # Just another step method here
+    end
+    
+    def process_page_three
+      # Since this is the last step, if this process method returns true
+      # the user will be redirected to the URL specified in the 
+      # "set_finish_path" declaration at the beginning of the Controller definition
+    end
+  end
+  
+=== View Helper Methods
+
+* <tt>step_number()</tt>: Current step index.
+* <tt>total_steps()</tt>: Total Number of steps in the wizard.
+* <tt>step_completed()</tt>: Returns boolean, whether the step has been completed.
+* <tt>wizard_path()</tt>: Wizard index path.  <b>THIS SHOULD BE THE ACTION PATH OF ALL FORMS/VIEWS WITH A "process" action.</b>
+* <tt>next_step_path()</tt>: URL to the next step.
+* <tt>previous_step_path()</tt>: URL to the previous step.
+* <tt>reset_wizard_path()</tt>: URL to reset the Wizard.
+* <tt>abort_wizard_path()</tt>: URL to abort the Wizard.
+
+
+
+  
+  
+  

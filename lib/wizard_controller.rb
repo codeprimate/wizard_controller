@@ -1,5 +1,5 @@
 module Codeprimate
-	VERSION = "0.1.5"
+	VERSION = "0.1.6"
   
   module Wizard
 
@@ -13,18 +13,26 @@ module Codeprimate
         @wizard_default_error = 'There was a problem processing the last step.'
         attr_accessor :wizard_steps, :finish_path, :abort_path, :wizard_default_error
 
+        # Define steps of the wizard.
+        #
+        # Should be an array of symbols.
         def define_steps(*args)
           self.wizard_steps = args
         end
 
+        # Set the URL that a user is redirected to after finishing the Wizard.
+        #
+        # Should be a string
         def set_finish_path(p)
           self.finish_path = p
         end
 
+        # Set the URL that a user is redirected to after aborting the Wizard.
         def set_abort_path(p)
           self.abort_path = p
         end
 
+        # Set the flash message a user sees when a process_action method returns false
         def set_default_error(e)
           self.wizard_default_error = e
         end
@@ -32,10 +40,7 @@ module Codeprimate
 
       ### PUBLIC ACTIONS
 
-      def set_abort_path(p)
-        self.abort_path = p
-      end
-
+      # Internal.
       def index
         if finished
           handle_finished_wizard
@@ -43,7 +48,8 @@ module Codeprimate
           handle_unfinished_wizard
         end
       end
-
+      
+      # Internal.
       def next_step
         if step_completed
           incr_step
@@ -54,16 +60,21 @@ module Codeprimate
         redirect_to :action => :index
       end
 
+      # Internal.
       def previous_step
         decr_step
         redirect_to :action => :index
       end
 
+      # Public action to reset the wizard
       def reset
         reset_wizard
         redirect_to :action => :index
       end
 
+      # Assign finish path.
+      #
+      # Accepts a string.
       def finish_path=(p)
         unless p.blank?
           session[:finish_path] = p

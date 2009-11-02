@@ -2,7 +2,7 @@
  
 Gem::Specification.new do |s|
   s.name = %q{wizard_controller}
-  s.version = "0.1.5"
+  s.version = "0.1.6"
  
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Patrick Morgan"]
@@ -16,5 +16,5 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{wizard_controller}
   s.rubygems_version = %q{1.3.0}
-  s.summary = %q{Wizard Controller is an inheritable class to ease the creation of Wizards}
+  s.summary = %q{Wizard controller provides a base class (Inheriting from ActionController::Base) that provides a DSL for quickly making Wizards.}
 end
