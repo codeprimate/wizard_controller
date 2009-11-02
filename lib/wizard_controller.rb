@@ -1,6 +1,4 @@
-module Codeprimate
-	VERSION = "0.1.7"
-  
+module Codeprimate  
   # = Wizard Controller
   # 
   # Wizard controller provides a base class (Inheriting from ActionController::Base)
@@ -83,6 +81,7 @@ module Codeprimate
   # * <tt>reset_wizard_path()</tt>: URL to reset the Wizard.
   # * <tt>abort_wizard_path()</tt>: URL to abort the Wizard.
   module Wizard
+    VERSION = "0.1.7"
 
     class Base < ApplicationController
       before_filter :restrict_access, :init_wizard_session
