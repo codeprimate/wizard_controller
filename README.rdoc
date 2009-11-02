@@ -11,6 +11,12 @@ VERY IMPORTANT!!! DONT OVERRIDE INDEX!
 Doing so will break all functionality. WizardController works by defining an 
 "index" method that does all the work.  To start a wizard, go to the "index" method.
 
+=== Setup and Configuration
+
+Add the gem configuration to your config/environment.rb
+
+  config.gem "wizard_controller"
+
 === Example Controller
 
   class ExampleController < Codeprimate::Wizard::Base
