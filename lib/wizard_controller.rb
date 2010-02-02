@@ -150,6 +150,17 @@ module Codeprimate
         redirect_to :action => :index
       end
 
+      # Internal.
+      def direct_step
+        step = params[:id].to_i
+        if step_completed(step)
+          set_current_wizard_step([1, step].max)
+        else
+          flash[:error] ||= self.class.wizard_default_error
+        end
+        redirect_to :action => :index
+      end
+
       # Public action to reset the wizard
       def reset
         reset_wizard
@@ -198,7 +209,7 @@ module Codeprimate
       end
 
       def restrict_access
-        ['index', 'next_step', 'previous_step', 'reset'].include?(params[:action])
+        ['index', 'next_step', 'previous_step', 'direct_step', 'reset'].include?(params[:action])
       end
 
       def execute_method(m=current_wizard_step_method)
@@ -233,9 +244,14 @@ module Codeprimate
         url_for(:controller => self.controller_name, :action => :previous_step)
       end
 
+      helper_method :direct_step_path
+      def direct_step_path(step)
+        url_for(:controller => self.controller_name, :action => :direct_step, :id => step)
+      end
+
       helper_method :step_completed
-      def step_completed
-        session[:wizard][self.class.to_s][:completed][current_wizard_step] == true
+      def step_completed(direct_step = current_wizard_step)
+        session[:wizard][self.class.to_s][:completed][direct_step] == true
       end
 
       helper_method :wizard_path
@@ -272,7 +288,7 @@ module Codeprimate
       def decr_step
         set_current_wizard_step([1, (current_wizard_step - 1)].max)
       end
-
+      
       def current_wizard_step_method
         self.class.wizard_steps[(current_wizard_step - 1)]
       end

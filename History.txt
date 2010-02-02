@@ -1,2 +1,3 @@
+20100129: 0.1.8 Midwire added the direct_step action, and supporting 'direct_step_path' method, to allow handling of navigating to a step directly instead of always using next and previous.
 20091102: 0.1.5 Changed session variable that stores redirect information, to avoid conflicts.
 20090925: Packaged as Gem
