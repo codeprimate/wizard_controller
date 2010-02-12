@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.date = %q{2010-02-02}
   s.description = %q{Wizard Controller is an inheritable class to ease the creation of Wizards}
   s.email = %q{patrick.morgan@masterwebdesign.net midwire@midwire.com}
-  s.files = ["README", "README.rdoc" , "History.txt" , "lib/wizard_controller.rb" ]
+  s.files = ["README.rdoc" , "History.txt" , "lib/wizard_controller.rb" ]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/codeprimate/wizard_controller}
   s.rdoc_options = ["--inline-source", "--charset=UTF-8"]
